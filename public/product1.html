@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESDE - Product Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            padding: 15px 20px;
+            color: white;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        ul li a:hover {
+            color: #ffebcd;
+        }
+        .cart-icon {
+            cursor: pointer;
+            font-size: 16px;
+            background: white;
+            color: #ff758c;
+            padding: 5px 8px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        .product-container {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 20px;
+            padding: 50px;
+            font-weight: bold;
+        }
+        .product-img {
+            text-align: center;
+        }
+        .product-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .small-img-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .small-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .small-img:hover {
+            transform: scale(1.1);
+        }
+        .product-list {
+            max-width: 500px;
+            padding: 30px;
+            padding-top: 150px;
+        }
+        .product-list h2 {
+            color: #ff758c;
+        }
+        .product-list select,
+        .product-list input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .add-to-cart-btn {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background 0.3s;
+            width: 400px
+        }
+        .add-to-cart-btn:hover {
+            background: #ff4f7b;
+        }
+        .product-list-similar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;  /* Center-align the text */
+        }
+        .similar {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            width: 100%;  /* Ensures it's above the products */
+            margin-bottom: 20px; /* Adds space between the title and products */
+        }
+        .product {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-width: 250px; /* Set a max-width for smaller images */
+        }
+        .add-to-cart-btn-1 {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 10;
+        }
+        .add-to-cart-btn-1:hover {
+            background: #ff4f7b;
+        }
+
+        /* Additional Styling for New Sections */
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff758c;
+            margin-bottom: 20px;
+        }
+
+         .reviews, .return-policy {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+         .reviews ul, .return-policy ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .reviews ul li, .return-policy ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .shipping h4, .reviews h4, .return-policy h4 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .rating-stars {
+            font-size: 20px;
+            color: #ffcc00;
+        }
+
+        .customer-question {
+            margin-top: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .customer-question h4 {
+            font-size: 18px;
+            color: #ff758c;
+        }
+
+        .customer-question input, .customer-question textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .review-form button {
+            background: #ff758c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .review-form button:hover {
+            background: #ff4f7b;
+        }
+        .shipping {
+          flex: 1;
+          height: 100%; /* Ensure it grows with the container */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background: white;
+         padding: 20px;
+         margin-left: 10px;
+         box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+         border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+       .product-container {
+         flex-direction: column;
+         align-items: center;
+         padding: 20px;
+       }
+
+        .big-image {
+          max-width: 100%;
+         height: auto;
+       }
+
+        .product-list {
+           padding-top: 20px;
+           width: 100%;
+          max-width: 100%;
+       }
+
+        .add-to-cart-btn {
+         width: 100%;
+        }
+
+       .shipping {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 20px;
+        }
+        nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #ff7eb3, #ff758c);
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+html, body {
+    overflow-x: hidden;
+}
+
+
+}
+
+    
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    nav ul, .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #ff758c;
+        padding: 10px 20px;
+    }
+    nav ul.show, .nav-links.show {
+        display: flex;
+    }
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ORNATE</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="window.location.href='cart.html'">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="product-container">
+        <div class="product-img">
+            <div class="big-image">
+            <img src="pic/11.jpg" id="MainImg" alt="product 2">
+          </div>
+            <div class="small-img-group">
+                <img src="pic/12.jpg" class="small-img" onclick="document.getElementById('MainImg').src=this.src" alt="">
+                <img src="pic/21.jpg" class="small-img" onclick="document.getElementById('MainImg').src=this.src" alt="">
+                <img src="pic/16.jpg" class="small-img" onclick="document.getElementById('MainImg').src=this.src" alt="">
+                <img src="pic/11.jpg" class="small-img" onclick="document.getElementById('MainImg').src=this.src" alt="">
+            </div>
+        </div>
+        <div class="product-list">
+            <h2>bead</h2>
+            <h4>#4500</h4>
+            <button class="add-to-cart-btn" onclick="addToCart(1, 'Product 1', '33.jpg', 10.99)">Add to Cart</button>
+            <h4>Product Details</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, in non. Doloribus?</p>
+        </div>
+
+        <section class="shipping">
+            <h4>Shipping Information</h4>
+                <p>Free shipping for orders over $100</p>
+                <p>Ships within 2-3 business days</p>
+                <p>Estimated delivery time: 5-7 business days</p>
+                <p>Express shipping available at an additional cost</p>
+        </section>
+    </section>
+
+    <!-- Shipping Information Section -->
+
+
+    <!-- Product Reviews Section -->
+    <section class="reviews">
+        <h4>Product Reviews</h4>
+        <div class="rating-stars">
+            ⭐⭐⭐⭐☆
+        </div>
+        <class id="review-list">
+            <p><strong>John Doe:</strong> Great product! Really loved the quality and design. Highly recommend!</p>
+            <p><strong>Jane Smith:</strong> Beautiful beads! Very well made, but the size is a bit smaller than expected.</p>
+            <p><strong>Robert White:</strong> Good quality for the price. Shipping was fast, and the product matched the description.</p>
+        </class>
+        <!-- Review Submission Form -->
+        <div class="review-form">
+            <h4>Leave Your Review</h4>
+            <textarea id="review-input" placeholder="Write your review here..." rows="4"></textarea>
+            <button onclick="submitReview()">Submit Review</button>
+        </div>
+    </section>
+
+    <!-- Return & Warranty Policy Section -->
+    <section class="return-policy">
+        <h4>Return & Warranty Policy</h4>
+            <p>We offer a 30-day return policy for unused products.</p>
+            <p>Products must be returned in their original condition.</p>
+            <p>Refunds will be processed within 7-10 business days after receiving the return.</p>
+            <p>1-year warranty on all products against manufacturing defects.</p>
+        
+    </section>
+
+    <!-- Customer Question Section -->
+    <section class="customer-question">
+        <h4>Have a question about this product?</h4>
+        <textarea placeholder="Ask your question here..." rows="4"></textarea>
+        <button class="add-to-cart-btn">Submit Question</button>
+    </section>
+
+    <!-- Similar Products Section -->
+    <section class="product-list-similar">
+        <h2 class="similar">Similar Products</h2>
+        <div class="product">
+            <img src="pic/12.jpg" alt="product 3">
+            <h4>Product 2</h4>
+            <p>#3500</p>
+            <button class="add-to-cart-btn-1" onclick="addToCart(2, 'Product 2', '33.jpg', 10.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="pic/13.jpg" alt="product 4">
+            <h4>Product 3</h4>
+            <p>#4000</p>
+            <button class="add-to-cart-btn-1" onclick="addToCart(3, 'Product 3', '33.jpg', 10.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="pic/16.jpg" alt="product 5">
+            <h4>Product 4</h4>
+            <p>#5000</p>
+            <button class="add-to-cart-btn-1" onclick="addToCart(4, 'Product 4', '33.jpg', 10.99)">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ORNATE. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function updateCartCount() {
+            document.getElementById("cart-count").innerText = cart.length;
+        }
+
+        function addToCart(id, name, image, price) {
+            let product = {
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            };
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert(name + " added to cart!");
+        }
+
+        function submitReview() {
+            const reviewText = document.getElementById("review-input").value;
+            if (reviewText.trim() !== "") {
+                const reviewList = document.getElementById("review-list");
+                const newReview = document.createElement("li");
+                newReview.innerHTML = `<strong>You:</strong> ${reviewText}`;
+                reviewList.appendChild(newReview);
+                document.getElementById("review-input").value = ""; // Clear the input after submission
+            } else {
+                alert("Please write a review before submitting.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", updateCartCount);
+    </script>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav ul') || document.querySelector('.nav-links');
+        nav.classList.toggle("show");
+    }
+</script>
+
+</body>
+</html>
