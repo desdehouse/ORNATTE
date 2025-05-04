@@ -115,56 +115,82 @@
     }
 
     @media (max-width: 768px) {
-      .search-bar {
-        margin:  0;
-        padding-right: 40px;
-      }
+            nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #ff7eb3, #ff758c);
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}        
+      .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 0;
+        } 
+        .search-bar {
+            margin: 0px;
+            padding-right: 30px;
+    }
 
-      .cart-icon {
-        padding-right: 10px;
-      }
-
-      ul {
+.cart-icon{
+    padding-right: 30px;
+}
+}
+    
+    
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    margin-left: -40px;
+    margin-bottom: -80px;
+}
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    nav ul, .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
         background: #ff758c;
         padding: 10px 20px;
-      }
-
-      ul.show {
-        display: flex;
-      }
-
-      .hamburger {
-        display: block;
-      }
     }
+    nav ul.show, .nav-links.show {
+        display: flex;
+    }
+}
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <div class="logo">ORNATE</div>
+        <div class="logo">ORNATE</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="filterProducts()"/>
-      </div>
-
-      <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-
-      <div class="cart-icon" onclick="window.location.href='cart.html'">
-        🛒 <span id="cart-count">0</span>
-      </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="filterProducts()">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="window.location.href='cart.html'">
+            🛒 <span id="cart-count">0</span>
+        </div>
     </nav>
-  </header>
+</header>>
 
   <section class="about-container">
     <h2>About ORNATE</h2>

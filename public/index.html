@@ -155,7 +155,7 @@
         } 
         .search-bar {
             margin: 0px;
-            padding-right: 50px;
+            padding-right: 30px;
     }
 
 .cart-icon{
@@ -168,7 +168,8 @@
     display: none;
     font-size: 26px;
     cursor: pointer;
-    padding-left: 10px;
+    margin-left: -40px;
+    margin-bottom: -80px;
 }
 @media (max-width: 768px) {
     .hamburger {
@@ -185,6 +186,37 @@
         display: flex;
     }
 }
+@media (max-width: 768px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 60px; /* height of nav or hamburger */
+        left: 0;
+        width: 100%;
+        background: #ff758c;
+        flex-direction: column;
+        padding: 10px 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+}
+
 .product {
     max-width: 250px; /* Add this line */
     width: 100%;      /* Optional: ensures it’s responsive within its max-width */

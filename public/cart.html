@@ -15,14 +15,14 @@
       background: #f4f4f4;
     }
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(90deg, #ff7eb3, #ff758c);
-      padding: 15px 20px;
-      color: white;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            padding: 15px 20px;
+            color: white;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
     .logo {
       font-size: 28px;
       font-weight: bold;
@@ -122,23 +122,192 @@
       font-weight: bold;
       margin-top: 20px;
     }
+    ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        ul li {
+            position: relative;
+        }
+        ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            padding-bottom: 5px;
+        }
+        ul li a:hover {
+            color: #ffebcd;
+        }
+        ul li a::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 3px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease-in-out;
+        }
+        ul li a:hover::after {
+            width: 100%;
+        }
+    .cart-icon {
+      font-size: 16px;
+      background: white;
+      color: #ff758c;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .cart-details h4,
+  .cart-details p {
+    white-space: normal;
+  }
+
+  .total-container {
+    text-align: left;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+       .product-container {
+         flex-direction: column;
+         align-items: center;
+         padding: 20px;
+       }
+
+        .big-image {
+          max-width: 100%;
+         height: auto;
+       }
+
+        .product-list {
+           padding-top: 20px;
+           width: 100%;
+          max-width: 100%;
+       }
+
+        .add-to-cart-btn {
+         width: 100%;
+        }
+
+       .shipping {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 20px;
+        }
+        nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #ff7eb3, #ff7e8c);
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+html, body {
+    overflow-x: hidden;
+}
+
+
+}
+
+    
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        align-self: flex-end;
+    }
+    nav ul, .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #ff758c;
+        padding: 10px 20px;
+    }
+    nav ul.show, .nav-links.show {
+        display: flex;
+    } 
+    
+  }
+  @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+        margin: 0;
+        padding: 10px;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 60px; /* adjust depending on nav height */
+        left: 0;
+        width: 100%;
+        background: #ff758c;
+        flex-direction: column;
+        padding: 10px 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+    
+}
+
+
+
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <div class="logo">ORNATE</div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="blog.html">Blog</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="cart-icon" onclick="window.location.href='cart.html'">
-        🛒 <span id="cart-count">0</span>
-      </div>
+        <div class="logo">ORNATE</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="window.location.href='cart.html'">
+            🛒 <span id="cart-count">0</span>
+        </div>
     </nav>
-  </header>
+</header>
 
   <section class="cart-container">
     <h2>Your Cart</h2>
@@ -216,5 +385,13 @@
       loadCart();
     });
   </script>
+<script>
+  function toggleMenu() {
+      const navLinks = document.querySelector("nav ul");
+      navLinks.classList.toggle("show");
+  }
+</script>
+
+
 </body>
 </html>
